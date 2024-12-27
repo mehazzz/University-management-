@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Overall Background Color */
+        body {
+            font-family: Arial, sans-serif;
+            background: #4B0082;
+            color: #333;
+            margin: 0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Navbar-style Heading */
+        .navbar-heading {
+            background-color: #2b0250;
+            color: #FFFFFF;
+            font-size: 2.5em;
+            font-weight: bold;
+            padding: 20px 0;
+            width: 100%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 0;
+        }
+
+        /* Main container for links */
+        .links-container {
+            max-width: 600px;
+            width: 90%;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Link Styles */
+        .dashboard-link {
+            padding: 15px;
+            font-size: 1.1em;
+            color: #820bf0;
+            text-decoration: none;
+            background-color: #E6E6FA;
+            border-radius: 8px;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dashboard-link:hover {
+            background-color: #8A2BE2;
+            color: #FFFFFF;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .navbar-heading {
+                font-size: 2em;
+            }
+
+            .dashboard-link {
+                font-size: 1em;
+                padding: 10px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar-style Full-Width Heading -->
+    <div class="navbar-heading">
+        University Management
+    </div>
+
+    <!-- Dashboard Links Container below the Heading -->
+    <div class="links-container">
+        <a href="{{ url_for('add_department') }}" class="dashboard-link">Add Department</a>
+        <a href="{{ url_for('add_faculty') }}" class="dashboard-link">Add Faculty</a>
+        <a href="{{ url_for('add_course') }}" class="dashboard-link">Add Course</a>
+        <a href="{{ url_for('add_student') }}" class="dashboard-link">Add Student</a>
+        <a href="{{ url_for('view_students') }}" class="dashboard-link">View Students</a>
+        <a href="{{ url_for('view_departments') }}" class="dashboard-link">View Departments</a>
+        <a href="{{ url_for('view_students_by_department') }}" class="dashboard-link">Students Enrolled in Department</a>
+    </div>
+</body>
+</html>

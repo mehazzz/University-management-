@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Students</title>
+    <style>
+        /* Background with Image */
+        body {
+            font-family: Arial, sans-serif;
+            background: #4B0082 no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Container for Centered Content */
+        .view-container {
+            max-width: 800px;
+            width: 90%;
+            padding: 30px;
+            margin: 20px;
+            background: #E6E6FA; /* Soft Lavender */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .view-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Heading Styles */
+        h1 {
+            color: #010101;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #8A2BE2;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* Button Styles */
+        .btn-delete, .btn-update {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.2s;
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c; /* Red for delete */
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+        }
+
+        .btn-update {
+            background-color: #3498db; /* Blue for update */
+            margin-left: 5px;
+        }
+
+        .btn-update:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .view-container {
+                width: 100%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            th, td {
+                font-size: 0.9em;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="view-container">
+        <h1>Students</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Major</th>
+                    <th>Year</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.department_name }}</td>
+                    <td>{{ student.year }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.phone }}</td>
+                    <td>
+                        <form action="{{ url_for('delete_student', student_id=student.student_id) }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn-delete">Delete</button>
+                        </form>
+                        <a href="{{ url_for('update_student', student_id=student.student_id) }}" class="btn-update">Update</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>

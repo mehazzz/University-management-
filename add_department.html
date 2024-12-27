@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Department</title>
+    <style>
+        /* Background with Image */
+        body {
+            font-family: Arial, sans-serif;
+            background: #4B0082 no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Container for Form */
+        .form-container {
+            max-width: 400px;
+            width: 90%;
+            padding: 30px;
+            margin: 20px;
+            background: #E6E6FA; /* Soft Lavender */
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Heading Styles */
+        h1 {
+            color: #010101;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #000000;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+        }
+
+        /* Button Styles */
+        button {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #8A2BE2;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        /* Link Styling */
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #8A2BE2;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .form-container {
+                width: 100%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.6em;
+            }
+
+            button {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Add Department</h1>
+        <form action="{{ url_for('add_department') }}" method="POST">
+            <label for="department_name">Department Name:</label>
+            <input type="text" id="department_name" name="department_name" required>
+            <button type="submit">Add Department</button>
+        </form>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

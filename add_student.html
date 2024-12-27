@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #4B0082 no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            max-width: 500px;
+            width: 90%;
+            padding: 30px;
+            background: #E6E6FA;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+        h2 { color: #010101; font-size: 1.8em; margin-bottom: 20px; }
+        label { font-weight: bold; color: #000000; display: block; margin: 10px 0 5px; text-align: left; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        input[type="text"], input[type="number"], select, input[type="email"] {
+            width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 6px; outline: none;
+        }
+        .btn {
+            padding: 12px; font-size: 16px; background-color: #8A2BE2; color: #ffffff; border: none; border-radius: 6px;
+            cursor: pointer; width: 100%;
+        }
+        .btn:hover { background-color: #0056b3; }
+        a { color: #007bff; text-decoration: none; margin-top: 15px; display: inline-block; }
+        a:hover { color: #8A2BE2; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add Student</h2>
+        <form action="{{ url_for('add_student') }}" method="POST">
+            <div class="form-group">
+                <label for="name">Student Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="department_name">Department:</label>
+                <select id="department_name" name="department_name" required>
+                    {% for department in departments %}
+                        <option value="{{ department['department_name'] }}">{{ department['department_name'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="year">Year:</label>
+                <input type="number" id="year" name="year" min="1" max="4" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" name="phone" required>
+            </div>
+            <button type="submit" class="btn">Add Student</button>
+        </form>
+        <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+    </div>
+</body>
+</html>

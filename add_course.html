@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Course</title>
+    <style>
+        /* CSS Styling for the theme */
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #4B0082 no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            max-width: 500px;
+            width: 90%;
+            padding: 30px;
+            background: #E6E6FA;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .form-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        h2 {
+            color: #010101;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #000000;
+            display: block;
+            margin: 10px 0 5px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: #007bff;
+        }
+
+        .btn {
+            padding: 12px;
+            font-size: 16px;
+            background-color: #8A2BE2;
+            color: #ffffff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #8A2BE2;
+            text-decoration: underline;
+        }
+
+        .back-link {
+            color: #ffffff;
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add Course</h2>
+        <form method="post">
+            <div class="form-group">
+                <label for="course_name">Course Name:</label>
+                <input type="text" id="course_name" name="course_name" required>
+            </div>
+            <div class="form-group">
+                <label for="department_id">Department:</label>
+                <select id="department_id" name="department_id" required>
+                    {% for department in departments %}
+                        <option value="{{ department.department_id }}">{{ department.department_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="credits">Credits:</label>
+                <input type="number" id="credits" name="credits" required>
+            </div>
+            <div class="form-group">
+                <label for="course_code">Course Code:</label>
+                <input type="text" id="course_code" name="course_code" required>
+            </div>
+            <button type="submit" class="btn">Add Course</button>
+        </form>
+        <a href="{{ url_for('dashboard') }}" class="back-link">Back to Dashboard</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Student</title>
+    <style>
+        /* Background and Container */
+        body {
+            font-family: Arial, sans-serif;
+            background: #4B0082 no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .update-container {
+            max-width: 500px;
+            width: 90%;
+            padding: 30px;
+            margin: 20px;
+            background: #E6E6FA;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .update-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Heading and Form Styling */
+        h1 {
+            color: #010101;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        form label {
+            display: block;
+            text-align: left;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #8A2BE2;
+            color: #ffffff;
+            padding: 10px;
+            font-size: 1.1em;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #6A0DAD;
+            transform: translateY(-3px);
+        }
+
+        /* Cancel Link Styling */
+        .cancel-link {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #8A2BE2;
+            transition: color 0.3s;
+        }
+
+        .cancel-link:hover {
+            color: #6A0DAD;
+        }
+    </style>
+</head>
+<body>
+    <div class="update-container">
+        <h1>Update Student</h1>
+        <form method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="{{ student.name }}" required>
+
+            <label for="department_name">Department:</label>
+            <select id="department_name" name="department_name">
+                {% for dept in departments %}
+                <option value="{{ dept.department_name }}" {% if dept.department_name == student.department_name %}selected{% endif %}>{{ dept.department_name }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" value="{{ student.year }}" min="1" max="4" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ student.email }}" required>
+
+            <label for="phone">Phone:</label>
+            <input type="text" id="phone" name="phone" value="{{ student.phone }}">
+
+            <button type="submit">Update Student</button>
+            <a href="{{ url_for('view_students') }}" class="cancel-link">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>
