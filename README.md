@@ -1,8 +1,9 @@
 # University-management-
+
 University Management/
-├── app.py              # Main Flask application file
-├── debug.py            # Debugging and utility script
-├── templates/          # Folder for HTML templates
+├── app.py              
+├── debug.py            
+├── templates/          
     ├── add_course.html
     ├── add_department.html
     ├── add_faculty.html
